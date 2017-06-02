@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+
+my $target_dir = $ARGV[0] || '/usr/share/openqa/';
+my @modified_files = `git ls-files -m`;
+chomp @modified_files;
+
+system("mkdir -p ${target_dir}/\$(dirname $_);cp -rfv $_ $target_dir/$_") for @modified_files;
